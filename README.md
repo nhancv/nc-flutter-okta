@@ -6,6 +6,18 @@ You can create Developer Edition Account at https://developer.okta.com/signup/
 
 ## Setup open-id
 
+### Setup application
+
+- Go to `Dashboard console`
+- Create New Application
+- Get OpenId info
+```
+Client ID: 0oa1nd3mf9SjX014I5d6
+Login redirect URIs: com.okta.dev-6782369:/callback	
+Issuer = Okta URL: https://dev-6782369.okta.com
+Discovery Uri: https://dev-6782369.okta.com/oauth2/default/.well-known/openid-configuration
+```
+
 ### Setup Android
 
 1. Update `android/app/build.gradle`. Replace `<your_custom_scheme>` with the desired value. Ex: Login redirect domain

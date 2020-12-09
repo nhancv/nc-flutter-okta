@@ -47,7 +47,6 @@ class _OktaOpenIdPageState extends BaseStateful<OktaOpenIdPage> {
           // ignore any existing session; force interactive login prompt
           promptValues: <String>['login'],
           loginHint: Platform.isAndroid ? '\u0002' : null,
-          preferEphemeralSession: true,
         ),
       );
 
