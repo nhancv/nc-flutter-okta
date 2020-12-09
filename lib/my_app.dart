@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:okta/generated/l10n.dart';
-import 'package:okta/pages/home/home_provider.dart';
-import 'package:okta/pages/login/login_provider.dart';
 import 'package:okta/services/app/app_dialog.dart';
 import 'package:okta/services/app/app_loading.dart';
 import 'package:okta/services/cache/credential.dart';
@@ -44,16 +42,6 @@ Future<void> myMain() async {
         ChangeNotifierProvider<LocaleProvider>(create: (_) => LocaleProvider()),
         ChangeNotifierProvider<AppThemeProvider>(
             create: (_) => AppThemeProvider()),
-        ChangeNotifierProvider<HomeProvider>(
-            create: (BuildContext context) => HomeProvider(
-                  context.read<ApiUser>(),
-                  context.read<Credential>(),
-                )),
-        ChangeNotifierProvider<LoginProvider>(
-            create: (BuildContext context) => LoginProvider(
-                  context.read<ApiUser>(),
-                  context.read<Credential>(),
-                )),
       ],
       child: const MyApp(),
     ),
@@ -68,19 +56,6 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  @override
-  void initState() {
-    super.initState();
-
-    // Example about load credential to init page
-    WidgetsBinding.instance.addPostFrameCallback((_) async {
-      final bool hasCredential =
-          await context.read<Credential>().loadCredential();
-      if (hasCredential) {
-        context.navigator()?.pushReplacementNamed(AppConstant.homePageRoute);
-      }
-    });
-  }
 
   @override
   Widget build(BuildContext context) {

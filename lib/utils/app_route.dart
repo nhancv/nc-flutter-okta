@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:okta/pages/counter/counter_page.dart';
-import 'package:okta/pages/home/home_page.dart';
-import 'package:okta/pages/login/login_page.dart';
 import 'package:okta/pages/okta_openid/okta_openid_page.dart';
 import 'package:okta/pages/okta_rest/okta_rest_page.dart';
 import 'package:okta/utils/app_constant.dart';
@@ -23,19 +20,6 @@ class AppRoute {
   /// Generate route for app here
   Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
-      case AppConstant.counterPageRoute:
-        return MaterialPageRoute<dynamic>(
-            settings: settings,
-            builder: (_) =>
-                CounterPage(argument: settings.arguments as String));
-
-      case AppConstant.homePageRoute:
-        return MaterialPageRoute<dynamic>(
-            settings: settings, builder: (_) => const HomePage());
-
-      case AppConstant.loginPageRoute:
-        return MaterialPageRoute<dynamic>(
-            settings: settings, builder: (_) => const LoginPage());
 
       case AppConstant.oktaRestPageRoute:
         return MaterialPageRoute<dynamic>(
