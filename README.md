@@ -4,9 +4,13 @@
 
 You can create Developer Edition Account at https://developer.okta.com/signup/
 
+## Okta rest api
+
+https://developer.okta.com/code/rest/ 
+
 ## Setup open-id
 
-### Setup application
+### Create OpenId Application
 
 - Go to `Dashboard console`
 - Create New Application
@@ -14,7 +18,7 @@ You can create Developer Edition Account at https://developer.okta.com/signup/
 ```
 Client ID: 0oa1nd3mf9SjX014I5d6
 Login redirect URIs: com.okta.dev-6782369:/callback	
-Issuer = Okta URL: https://dev-6782369.okta.com
+Issuer = Okta URL: https://dev-6782369.okta.com/oauth2/default
 Discovery Uri: https://dev-6782369.okta.com/oauth2/default/.well-known/openid-configuration
 ```
 

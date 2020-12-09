@@ -23,54 +23,6 @@ class _OktaOpenIdPageState extends BaseStateful<OktaOpenIdPage> {
   @override
   void afterFirstBuild(BuildContext context) {}
 
-  // Logout
-  void logout() {
-    setState(() {
-      info = null;
-    });
-  }
-
-  // Login
-  Future<void> login() async {
-    final FlutterAppAuth appAuth = FlutterAppAuth();
-
-    try {
-      final AuthorizationTokenResponse authResponse =
-          await appAuth.authorizeAndExchangeCode(
-        AuthorizationTokenRequest(
-          '0oa1nd3mf9SjX014I5d6',
-          'com.okta.dev-6782369:/callback',
-          issuer: 'https://dev-6782369.okta.com',
-          discoveryUrl:
-              'https://dev-6782369.okta.com/oauth2/default/.well-known/openid-configuration',
-          scopes: <String>['openid', 'profile', 'email', 'offline_access'],
-          // ignore any existing session; force interactive login prompt
-          promptValues: <String>['login'],
-          loginHint: Platform.isAndroid ? '\u0002' : null,
-        ),
-      );
-
-      final String accessToken = authResponse.accessToken;
-      final String refreshToken = authResponse.refreshToken;
-      final String idToken = authResponse.idToken;
-      final String tokenType = authResponse.tokenType;
-      final String accessTokenExpirationDateTime =
-          authResponse.accessTokenExpirationDateTime.toString();
-      print('info: $info');
-      setState(() {
-        info = '''
-        accessToken: $accessToken
-        refreshToken: $refreshToken
-        idToken: $idToken
-        tokenType: $tokenType
-        accessTokenExpirationDateTime: $accessTokenExpirationDateTime
-        ''';
-      });
-    } catch (e) {
-      print(e);
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     super.build(context);
@@ -101,4 +53,53 @@ class _OktaOpenIdPageState extends BaseStateful<OktaOpenIdPage> {
       ),
     );
   }
+
+  // Logout
+  void logout() {
+    setState(() {
+      info = null;
+    });
+  }
+
+  // Login
+  Future<void> login() async {
+    final FlutterAppAuth appAuth = FlutterAppAuth();
+
+    try {
+      final AuthorizationTokenResponse authResponse =
+      await appAuth.authorizeAndExchangeCode(
+        AuthorizationTokenRequest(
+          '0oa1nd3mf9SjX014I5d6',
+          'com.okta.dev-6782369:/callback',
+          issuer: 'https://dev-6782369.okta.com/oauth2/default',
+          discoveryUrl:
+          'https://dev-6782369.okta.com/oauth2/default/.well-known/openid-configuration',
+          scopes: <String>['openid', 'profile', 'email', 'offline_access'],
+          // ignore any existing session; force interactive login prompt
+          promptValues: <String>['login'],
+          loginHint: Platform.isAndroid ? '\u0002' : null,
+        ),
+      );
+
+      final String accessToken = authResponse.accessToken;
+      final String refreshToken = authResponse.refreshToken;
+      final String idToken = authResponse.idToken;
+      final String tokenType = authResponse.tokenType;
+      final String accessTokenExpirationDateTime =
+      authResponse.accessTokenExpirationDateTime.toString();
+      print('info: $info');
+      setState(() {
+        info = '''
+        accessToken: $accessToken
+        refreshToken: $refreshToken
+        idToken: $idToken
+        tokenType: $tokenType
+        accessTokenExpirationDateTime: $accessTokenExpirationDateTime
+        ''';
+      });
+    } catch (e) {
+      print(e);
+    }
+  }
+
 }

@@ -21,11 +21,11 @@ class AppRoute {
   Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
 
+      case AppConstant.rootPageRoute:
       case AppConstant.oktaRestPageRoute:
         return MaterialPageRoute<dynamic>(
             settings: settings, builder: (_) => OktaRestPage());
 
-      case AppConstant.rootPageRoute:
       case AppConstant.oktaOpenIdPageRoute:
         return MaterialPageRoute<dynamic>(
             settings: settings, builder: (_) => OktaOpenIdPage());
