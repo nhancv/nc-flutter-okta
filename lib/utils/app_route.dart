@@ -2,8 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:okta/pages/counter/counter_page.dart';
 import 'package:okta/pages/home/home_page.dart';
 import 'package:okta/pages/login/login_page.dart';
+import 'package:okta/pages/okta_openid/okta_openid_page.dart';
+import 'package:okta/pages/okta_rest/okta_rest_page.dart';
 import 'package:okta/utils/app_constant.dart';
 import 'package:provider/provider.dart';
+
+import 'app_constant.dart';
 
 class AppRoute {
   /// App global navigator key
@@ -30,10 +34,20 @@ class AppRoute {
             settings: settings, builder: (_) => const HomePage());
 
       case AppConstant.loginPageRoute:
-      case AppConstant.rootPageRoute:
-      default:
         return MaterialPageRoute<dynamic>(
             settings: settings, builder: (_) => const LoginPage());
+
+      case AppConstant.oktaRestPageRoute:
+        return MaterialPageRoute<dynamic>(
+            settings: settings, builder: (_) => OktaRestPage());
+
+      case AppConstant.rootPageRoute:
+      case AppConstant.oktaOpenIdPageRoute:
+        return MaterialPageRoute<dynamic>(
+            settings: settings, builder: (_) => OktaOpenIdPage());
+
+      default:
+        return null;
     }
   }
 }

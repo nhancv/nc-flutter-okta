@@ -8,7 +8,7 @@ You can create Developer Edition Account at https://developer.okta.com/signup/
 
 ### Setup Android
 
-1. Update `android/app/build.gradle`. Replace <your_custom_scheme> with the desired value
+1. Update `android/app/build.gradle`. Replace `<your_custom_scheme>` with the desired value. Ex: Login redirect domain
 
 ```
 ...
@@ -27,7 +27,7 @@ android {
 
 ### Setup iOS
 
-Update `ios/Runner/Info.plist`. Replace `<your_custom_scheme>` with the desired value
+Update `ios/Runner/Info.plist`. Replace `<your_custom_scheme>` with the desired value. Ex: Login redirect domain
 
 ```
 <key>CFBundleURLTypes</key>
@@ -42,3 +42,17 @@ Update `ios/Runner/Info.plist`. Replace `<your_custom_scheme>` with the desired 
     </dict>
 </array>
 ```
+
+### Dart
+
+- Install lib
+```
+  # Standard library for OAuth 2.0 and OpenID Connect
+  flutter_appauth: ^0.9.2+6
+```
+
+
+
+
+
+
