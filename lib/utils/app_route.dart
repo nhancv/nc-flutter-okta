@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:okta/pages/okta_openid/okta_openid_page.dart';
+import 'package:okta/pages/okta_register/okta_register_page.dart';
 import 'package:okta/pages/okta_rest/okta_rest_page.dart';
+import 'package:okta/pages/okta_social/okta_social_page.dart';
 import 'package:okta/utils/app_constant.dart';
 import 'package:provider/provider.dart';
 
@@ -20,15 +22,25 @@ class AppRoute {
   /// Generate route for app here
   Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
-
-      case AppConstant.rootPageRoute:
+      // case AppConstant.rootPageRoute:
       case AppConstant.oktaRestPageRoute:
         return MaterialPageRoute<dynamic>(
             settings: settings, builder: (_) => OktaRestPage());
 
+      // case AppConstant.rootPageRoute:
       case AppConstant.oktaOpenIdPageRoute:
         return MaterialPageRoute<dynamic>(
             settings: settings, builder: (_) => OktaOpenIdPage());
+
+      // case AppConstant.rootPageRoute:
+      case AppConstant.oktaRegisterPageRoute:
+        return MaterialPageRoute<dynamic>(
+            settings: settings, builder: (_) => OktaRegisterPage());
+
+      case AppConstant.rootPageRoute:
+      case AppConstant.oktaSocialPageRoute:
+        return MaterialPageRoute<dynamic>(
+            settings: settings, builder: (_) => OktaSocialPage());
 
       default:
         return null;

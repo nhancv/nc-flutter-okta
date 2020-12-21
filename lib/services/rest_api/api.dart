@@ -39,6 +39,16 @@ class Api {
     return options;
   }
 
+  /// Get ApiKey to header options
+  Future<Options> getApiKeyOptions({String contentType}) async {
+    final Options options = await getOptions(contentType: contentType);
+
+    final String apiKey = Config.instance.env.apiKey;
+    options.headers.addAll(<String, String>{'Authorization': 'SSWS $apiKey'});
+
+    return options;
+  }
+
   /// Wrap Dio Exception
   Future<Response<T>> wrapE<T>(Future<Response<T>> Function() dioApi) async {
     try {
