@@ -79,7 +79,7 @@ class _OktaSocialPageState extends BaseStateful<OktaSocialPage> {
     });
   }
 
-  // Login google
+  // Login social
   Future<void> login(String idName) async {
     // https://developer.okta.com/docs/reference/api/oidc/#authorize
     try {
@@ -123,17 +123,4 @@ class _OktaSocialPageState extends BaseStateful<OktaSocialPage> {
     }
   }
 
-  // Login Facebook
-  Future<void> loginFacebook() async {
-    try {} catch (e) {
-      print(e);
-    }
-  }
-
-  // Login LinkedIn
-  Future<void> loginLinkedIn() async {
-    try {} catch (e) {
-      print(e);
-    }
-  }
 }
