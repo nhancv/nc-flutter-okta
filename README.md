@@ -114,7 +114,8 @@ https://developer.okta.com/docs/guides/add-an-external-idp/google/create-an-app-
 - In your Okta org, click Applications, and then Add Application
 - Select the appropriate platform for your use case, enter a name for your new application, and then click Next.
 - In Allowed grant types: Enable Implicit + Check both Allow ID Token with implicit grant type + Allow Access Token with implicit grant type 
-- Add Custom Login redirect URIs: okta://com.okta.dev-6782369
+- Add Custom Login redirect URIs: `okta://com.okta.dev-6782369`
+- Add Custom Logout redirect URIs: `okta:/logout`
 - Scroll to the Client Credentials section and copy the client ID that you use to complete the Authorize URL in the next step
 * Create the Authorization URL
 https://${yourOktaDomain}/oauth2/v1/authorize?idp=0oaaq9pjc2ujmFZexample&client_id=GkGw4K49N4UEE1example&response_type=id_token&response_mode=fragment&scope=openid%20email&redirect_uri=https%3A%2F%2FyourAppUrlHere.com%2F&state=WM6D&nonce=YsG76jo
@@ -157,7 +158,7 @@ curl --location --request GET 'https://dev-6782369.okta.com/oauth2/v1/userinfo' 
 // Present the dialog to the user
 // https://developer.okta.com/docs/reference/api/oidc/#authorize
 final String result = await FlutterWebAuth.authenticate(
-  url: 'https://dev-6782369.okta.com/oauth2/v1/authorize?idp=0oa2s9urd0fKsBsG15d6&client_id=0oa1nd3mf9SjX014I5d6&response_type=id_token%20token&response_mode=fragment&scope=openid%20profile%20email&redirect_uri=okta://com.okta.dev-6782369&state=any&nonce=any&prompt=login',
+  url: 'https://dev-6782369.okta.com/oauth2/v1/authorize?idp=0oa2s9urd0fKsBsG15d6&client_id=0oa1nd3mf9SjX014I5d6&response_type=id_token%20token&response_mode=fragment&scope=openid&redirect_uri=okta://com.okta.dev-6782369&state=any&nonce=any&prompt=login',
   callbackUrlScheme: 'okta',
 );
 

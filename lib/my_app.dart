@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:okta/generated/l10n.dart';
+import 'package:okta/pages/okta_social/webview_example.dart';
 import 'package:okta/services/app/app_dialog.dart';
 import 'package:okta/services/app/app_loading.dart';
 import 'package:okta/services/cache/credential.dart';
@@ -82,8 +83,9 @@ class _MyAppState extends State<MyApp> {
       ///            const RouteSettings(name: AppConstant.rootPageRoute))
       ///        as MaterialPageRoute<dynamic>)
       ///    .builder(context),
-      initialRoute: AppConstant.rootPageRoute,
-      onGenerateRoute: appRoute.generateRoute,
+      // initialRoute: AppConstant.rootPageRoute,
+      // onGenerateRoute: appRoute.generateRoute,
+      home: WebViewExample(),
       navigatorObservers: <NavigatorObserver>[appRoute.routeObserver],
     );
   }
