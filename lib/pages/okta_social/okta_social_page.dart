@@ -103,7 +103,7 @@ class _OktaSocialPageState extends BaseStateful<OktaSocialPage> {
 
       final String result = await FlutterWebAuth.authenticate(
         url:
-            'https://dev-6782369.okta.com/oauth2/v1/authorize?idp=${idps[idName]}&client_id=0oa1nd3mf9SjX014I5d6&response_type=id_token token&response_mode=fragment&scope=${scopes[idName]}&redirect_uri=okta://com.okta.dev-6782369&state=any&nonce=any&prompt=login',
+            'https://dev-6782369.okta.com/oauth2/v1/authorize?idp=${idps[idName]}&client_id=0oa1nd3mf9SjX014I5d6&response_type=id_token%20token&response_mode=fragment&scope=${scopes[idName]}&redirect_uri=okta://com.okta.dev-6782369&state=any&nonce=any&prompt=login',
         callbackUrlScheme: 'okta',
       );
 
