@@ -114,6 +114,9 @@ class _OktaSocialPageState extends BaseStateful<OktaSocialPage> {
       final String result = await Navigator.of(context)
           .push<String>(PWebAuth.route(authorizationUrl, redirectUri));
 
+      if(result == null) {
+        return false;
+      }
       // Extract token from resulting url
       final Uri token = Uri.parse(result);
       // Just for easy parsing

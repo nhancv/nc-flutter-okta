@@ -31,10 +31,10 @@ class _PWebAuthState extends State<PWebAuth> {
     super.initState();
     if (Platform.isAndroid) {
       WebView.platform = SurfaceAndroidWebView();
-      WidgetsBinding.instance.addPostFrameCallback((_) async {
-        await cookieManager.clearCookies();
-      });
     }
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      await cookieManager.clearCookies();
+    });
   }
 
   @override
