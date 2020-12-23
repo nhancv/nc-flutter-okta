@@ -83,9 +83,9 @@ class _MyAppState extends State<MyApp> {
       ///            const RouteSettings(name: AppConstant.rootPageRoute))
       ///        as MaterialPageRoute<dynamic>)
       ///    .builder(context),
-      // initialRoute: AppConstant.rootPageRoute,
-      // onGenerateRoute: appRoute.generateRoute,
-      home: WebViewExample(),
+      initialRoute: AppConstant.rootPageRoute,
+      onGenerateRoute: appRoute.generateRoute,
+      // home: WebViewExample(),
       navigatorObservers: <NavigatorObserver>[appRoute.routeObserver],
     );
   }

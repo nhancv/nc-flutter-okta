@@ -130,10 +130,6 @@ curl --location --request GET 'https://dev-6782369.okta.com/oauth2/v1/userinfo' 
 ```
 
 ##### Integrate to flutter 
-- Install lib
-```
-  flutter_web_auth: ^0.2.4
-```
 
 - Android config `AndroidManifest.xml`
 ```
@@ -157,10 +153,8 @@ curl --location --request GET 'https://dev-6782369.okta.com/oauth2/v1/userinfo' 
 ```
 // Present the dialog to the user
 // https://developer.okta.com/docs/reference/api/oidc/#authorize
-final String result = await FlutterWebAuth.authenticate(
-  url: 'https://dev-6782369.okta.com/oauth2/v1/authorize?idp=0oa2s9urd0fKsBsG15d6&client_id=0oa1nd3mf9SjX014I5d6&response_type=id_token%20token&response_mode=fragment&scope=openid&redirect_uri=okta://com.okta.dev-6782369&state=any&nonce=any&prompt=login',
-  callbackUrlScheme: 'okta',
-);
+final String result = await Navigator.of(context)
+          .push<String>(PWebAuth.route(authorizationUrl, redirectUri));
 
 // Extract token from resulting url
 final Uri token = Uri.parse(result);

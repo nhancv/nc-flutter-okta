@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_web_auth/flutter_web_auth.dart';
+import 'package:okta/widgets/p_web_auth.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 import '../../services/safety/base_stateful.dart';
@@ -15,10 +15,7 @@ class OktaSocialPage extends StatefulWidget {
 }
 
 class _OktaSocialPageState extends BaseStateful<OktaSocialPage> {
-
   String info;
-
-  String idToken;
 
   bool get isLogged => info != null && info.isNotEmpty;
 
@@ -34,21 +31,6 @@ class _OktaSocialPageState extends BaseStateful<OktaSocialPage> {
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    return WebView(
-      gestureNavigationEnabled: true,
-      initialUrl:
-          'https://dev-6782369.okta.com/oauth2/v1/authorize?idp=0oa2selzkzc1nrq4z5d6&client_id=0oa1nd3mf9SjX014I5d6&response_type=id_token%20token&response_mode=fragment&scope=openid&redirect_uri=okta://com.okta.dev-6782369&state=any&nonce=any&prompt=login',
-      javascriptMode: JavascriptMode.unrestricted,
-      onWebViewCreated: (_) {
-        print('onWebViewCreated');
-      },
-      onPageStarted: (String msg) {
-        print('onPageStarted: $msg');
-      },
-      onPageFinished: (String msg) {
-        print('onPageFinished: $msg');
-      },
-    );
     return PAppBarEmpty(
       child: WDismissKeyboard(
         child: SingleChildScrollView(
@@ -126,18 +108,11 @@ class _OktaSocialPageState extends BaseStateful<OktaSocialPage> {
         'linkedin': 'openid',
       };
 
-      const String _loginRedirectUri = 'okta://com.okta.dev-6782369';
-      const String _logoutRedirectUri = 'okta:/logout';
+      const String redirectUri = 'okta://com.okta.dev-6782369';
       final String authorizationUrl =
-          'https://dev-6782369.okta.com/oauth2/v1/authorize?idp=${idps[idName]}&client_id=0oa1nd3mf9SjX014I5d6&response_type=id_token%20token&response_mode=fragment&scope=${scopes[idName]}&redirect_uri=$_loginRedirectUri&state=any&nonce=any&prompt=login';
-      final String logoutUrl = this.idToken == null
-          ? null
-          : 'https://dev-6782369.okta.com/oauth2/v1/logout?id_token_hint=${this.idToken}&post_logout_redirect_uri=$_logoutRedirectUri';
-      final String loginUrl = logoutUrl ?? authorizationUrl;
-      final String result = await FlutterWebAuth.authenticate(
-          url: loginUrl, callbackUrlScheme: 'okta');
-
-      print('result $result');
+          'https://dev-6782369.okta.com/oauth2/v1/authorize?idp=${idps[idName]}&client_id=0oa1nd3mf9SjX014I5d6&response_type=id_token%20token&response_mode=fragment&scope=${scopes[idName]}&redirect_uri=$redirectUri&state=any&nonce=any&prompt=login';
+      final String result = await Navigator.of(context)
+          .push<String>(PWebAuth.route(authorizationUrl, redirectUri));
 
       // Extract token from resulting url
       final Uri token = Uri.parse(result);
@@ -149,7 +124,6 @@ class _OktaSocialPageState extends BaseStateful<OktaSocialPage> {
       print('accessToken: $accessToken');
       setState(() {
         info = 'accessToken: $accessToken\nidToken: $idToken';
-        this.idToken = idToken;
       });
     } catch (e) {
       print(e);
