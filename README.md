@@ -131,6 +131,11 @@ curl --location --request GET 'https://dev-6782369.okta.com/oauth2/v1/userinfo' 
 
 ##### Integrate to flutter 
 
+- Install lib
+```
+  webview_flutter: ^1.0.7
+```
+
 - Android config `AndroidManifest.xml`
 ```
 <manifest>
