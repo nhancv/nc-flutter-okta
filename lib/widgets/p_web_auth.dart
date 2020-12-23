@@ -58,7 +58,7 @@ class _PWebAuthState extends State<PWebAuth> {
         return WebView(
           initialUrl: widget.initialUrl,
           // Fix google sign in
-          userAgent: 'Chrome/56.0.0.0 Mobile',
+          userAgent: 'Mozilla/5.0 (Linux; Android 4.1.1; Galaxy Nexus Build/JRO03C) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.166 Mobile Safari/535.19',
           javascriptMode: JavascriptMode.unrestricted,
           onWebViewCreated: (WebViewController webViewController) {
             _controller.complete(webViewController);
