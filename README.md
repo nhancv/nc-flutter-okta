@@ -136,30 +136,11 @@ curl --location --request GET 'https://dev-6782369.okta.com/oauth2/v1/userinfo' 
   webview_flutter: ^1.0.7
 ```
 
-- Android config `AndroidManifest.xml`
-```
-<manifest>
-    <application>
-        .....
-
-        <activity android:name="com.linusu.flutter_web_auth.CallbackActivity" >
-            <intent-filter android:label="flutter_web_auth">
-                <action android:name="android.intent.action.VIEW" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-                <data android:scheme="okta" />
-            </intent-filter>
-        </activity>
-    </application>
-</manifest>
-```
-
 - Example
 ```
 // Present the dialog to the user
 // https://developer.okta.com/docs/reference/api/oidc/#authorize
-final String result = await Navigator.of(context)
-          .push<String>(PWebAuth.route(authorizationUrl, redirectUri));
+final String result = await PWebAuth.open(context, authorizationUrl, redirectUri);
 
 // Extract token from resulting url
 final Uri token = Uri.parse(result);

@@ -799,6 +799,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.9.7+15"
+  web_auth:
+    dependency: "direct main"
+    description:
+      name: web_auth
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.0"
   web_socket_channel:
     dependency: transitive
     description:
@@ -821,7 +828,7 @@ packages:
     source: hosted
     version: "0.7.3"
   webview_flutter:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: webview_flutter
       url: "https://pub.dartlang.org"

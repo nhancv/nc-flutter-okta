@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:okta/widgets/p_web_auth.dart';
+import 'package:web_auth/web_auth.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 import '../../services/safety/base_stateful.dart';
@@ -90,7 +90,7 @@ class _OktaSocialPageState extends BaseStateful<OktaSocialPage> {
   Future<void> login(String idName) async {
     // https://developer.okta.com/docs/reference/api/oidc/#authorize
     try {
-      final Map<String, String> idps = {
+      final Map<String, String> idps = <String, String>{
         // https://console.developers.google.com/
         'google': '0oa2s9urd0fKsBsG15d6',
         // https://developers.facebook.com/
@@ -109,9 +109,11 @@ class _OktaSocialPageState extends BaseStateful<OktaSocialPage> {
       };
 
       const String redirectUri = 'okta://com.okta.dev-6782369';
+      // final String authorizationUrl =
+      //     'https://dev-6782369.okta.com/oauth2/v1/authorize?idp=${idps[idName]}&client_id=0oa1nd3mf9SjX014I5d6&response_type=id_token%20token&response_mode=fragment&scope=${scopes[idName]}&redirect_uri=$redirectUri&state=any&nonce=any&prompt=login';
       final String authorizationUrl =
-          'https://dev-6782369.okta.com/oauth2/v1/authorize?idp=${idps[idName]}&client_id=0oa1nd3mf9SjX014I5d6&response_type=id_token%20token&response_mode=fragment&scope=${scopes[idName]}&redirect_uri=$redirectUri&state=any&nonce=any&prompt=login';
-      final String result = await PWebAuth.open(context, authorizationUrl, redirectUri);
+      'https://dev-6782369.okta.com/oauth2/v1/authorize?client_id=0oa1nd3mf9SjX014I5d6&response_type=id_token%20token&response_mode=fragment&scope=${scopes[idName]}&redirect_uri=$redirectUri&state=any&nonce=any&prompt=login';
+      final String result = await WebAuth.open(context, authorizationUrl, redirectUri);
 
       if(result == null) {
         return false;
