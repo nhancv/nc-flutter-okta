@@ -111,8 +111,7 @@ class _OktaSocialPageState extends BaseStateful<OktaSocialPage> {
       const String redirectUri = 'okta://com.okta.dev-6782369';
       final String authorizationUrl =
           'https://dev-6782369.okta.com/oauth2/v1/authorize?idp=${idps[idName]}&client_id=0oa1nd3mf9SjX014I5d6&response_type=id_token%20token&response_mode=fragment&scope=${scopes[idName]}&redirect_uri=$redirectUri&state=any&nonce=any&prompt=login';
-      final String result = await Navigator.of(context)
-          .push<String>(PWebAuth.route(authorizationUrl, redirectUri));
+      final String result = await PWebAuth.open(context, authorizationUrl, redirectUri);
 
       if(result == null) {
         return false;

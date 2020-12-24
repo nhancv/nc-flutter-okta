@@ -8,15 +8,17 @@ import 'package:okta/utils/app_log.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class PWebAuth extends StatefulWidget {
-  const PWebAuth(this.initialUrl, this.redirectUri, {Key key})
+  const PWebAuth(this.initialUrl, this.redirectUri, {Key key, this.userAgent})
       : super(key: key);
 
   final String initialUrl;
   final String redirectUri;
+  final String userAgent;
 
-  static Route<String> route(String authorizationUrl, String redirectUri) {
-    return MaterialPageRoute<String>(
-        builder: (_) => PWebAuth(authorizationUrl, redirectUri));
+  static Future<String> open(
+      BuildContext context, String authorizationUrl, String redirectUri) {
+    return Navigator.of(context).push<String>(MaterialPageRoute<String>(
+        builder: (_) => PWebAuth(authorizationUrl, redirectUri)));
   }
 
   @override
@@ -67,7 +69,7 @@ class _PWebAuthState extends BaseStateful<PWebAuth> {
             WebView(
               initialUrl: widget.initialUrl,
               // Fix google sign in
-              userAgent:
+              userAgent: widget.userAgent ??
                   'Mozilla/5.0 (Linux; Android 7.0; SM-G930V Build/NRD90M) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.125 Mobile Safari/537.36',
               javascriptMode: JavascriptMode.unrestricted,
               onWebViewCreated: (WebViewController webViewController) {
